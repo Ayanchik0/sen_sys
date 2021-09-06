@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'icon.png' %}" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <style>
+.alert {
+  padding: 20px;
+  background-color: #53d88a;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+  <!-- Custom StyleSheet -->
+  <link rel="stylesheet" href="{% static 'catalog/styles.css' %}" />
+  <title>Корзина</title>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+
+    <nav class="nav">
+    <div class="color_border"></div>
+    <div class="wrapper container">
+
+      <div class="logo"><a href="{% url 'main' %}"><img src="{% static 'src/icon/logo.png' %}" alt=""></a></div>
+      <ul class="nav-list">
+        <div class="top">
+          <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+        </div>
+        <li><a href="{% url 'main' %}">Главная</a></li>
+        <li><a href="{% url 'base' %}">Каталог</a></li>
+        <li><a href="#footer">Контакты</a></li>
+        <li><a href="{% url 'cart' %}">Корзина</a></li>
+        <!-- icons -->
+        <li class="icons">
+          <span>
+            <img src="{% static 'catalog/images/shoppingBag.svg' %}" alt="" />
+            <small class="count d-flex">{{ cart.products.count }}</small>
+          </span>
+        </li>
+      </ul>
+      <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+
+    <!-- Cart Items -->
+    <div class="container cart">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert success">
+          {{ message }}!
+        </div>
+      {% endfor %}
+    {% endif %}
+
+      <h4 class="text-center pt-5 pb-5" style="margin-bottom: 10px">Ваша корзина {% if not cart.products.count %}пуста{% endif %}</h4>
+      {% if cart.products.count %}
+      <table>
+        <tr>
+          <th>Товар</th>
+          <th>Количество</th>
+          <th>Цена</th>
+        </tr>
+
+        {% for item in cart.products.all %}
+        <tr>
+          <td>
+            <div class="cart-info">
+              <img src="{{ item.content_object.image.url }}" alt="" />
+              <div>
+                <p>{{ item.content_object.title }}</p>
+                <span>Цена: {{ item.content_object.price }}</span>
+                <br />
+                <a href="{% url 'delete_from_cart' ct_model=item.content_object.get_model_name slug=item.content_object.slug %}">удалить</a>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <form action="{% url 'change_qty' ct_model=item.content_object.get_model_name slug=item.content_object.slug %}" method="post">
+              {% csrf_token %}
+              <input type="number" class="form-control" name="qty" value="{{ item.qty }}" min="1" />
+              <br>
+              <input type="submit" class="button"  value="Применить"
+              style="width: 80px; background-color: #004fac; color: white; border: 0; text-align: center;
+              border-radius: 5px; margin-top: 5px; " />
+            </form>
+          </td>
+
+          <td>{{ item.final_price }} тг.</td>
+        </tr>
+        {% endfor %}
+
+      </table>
+
+      <div class="total-price">
+        <table>
+          <tr>
+            <td>Количество товаров:</td>
+            <td>{{ cart.total_products }}</td>
+          </tr>
+          <tr>
+            <td>Итоговая цена:</td>
+            <td>{{ cart.final_price }} тг.</td>
+          </tr>
+        </table>
+        <a href="{% url 'checkout' %}" class="checkout btn">Оформить заказ</a>
+      </div>
+      {% endif %}
+    </div>
+
+ <!-- Footer -->
+  <footer id="footer" class="section footer">
+    <div class="container">
+      <div class="footer-container">
+
+        <div class="footer-center">
+          <h3 class="footer__title">ТОО "SensorSystems"</h3>
+          <p class="footer__description">Продажа, установка и
+              сервисное обслуживание
+              противокражного оборудования,
+              систем безопасности и учёта.
+          </p>
+        </div>
+
+        <div class="footer-center">
+          <h3>Адрес</h3>
+          <div class="map">
+            <img src="{% static 'src/img/map.jpg' %}" alt="">
+          </div>
+        </div>
+
+        <div class="footer-center">
+          <h3>Контакты</h3>
+          <div>
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+            </span>
+            г. Алматы, пр. Рыскулова, БЦ "Массагет", 3 этаж, офис 325
+          </div>
+          <div>
+            <span>
+              <i class="far fa-envelope"></i>
+            </span>
+            info@sensorsystems.kz
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            +7 (727) 317 21 14
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            +7 (707) 629 26 90
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            +7 (747) 469 56 52
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Custom Scripts -->
+  <script src="{% static 'catalog/js/products.js' %}"></script>
+  <script src="{% static 'catalog/js/slider.js' %}"></script>
+  <script src="{% static 'catalog/js/index.js' %}"></script>
+</body>
+
+</html>

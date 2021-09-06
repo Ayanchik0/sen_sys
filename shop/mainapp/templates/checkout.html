@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% load static %}
+{% load specifications %}
+{% load crispy_forms_tags %}
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'icon.png' %}" type="image/x-icon"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Custom StyleSheet -->
+    <link rel="stylesheet" href="{% static 'catalog/fstyles.css' %}"/>
+    <title>Оформить заказ</title>
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav class="nav">
+    <div class="color_border"></div>
+    <div class="wrapper container">
+
+        <div class="logo"><a href="{% url 'main' %}"><img src="{% static 'src/icon/logo.png' %}" alt=""></a></div>
+        <ul class="nav-list">
+            <div class="top">
+                <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+            </div>
+            <li><a href="{% url 'main' %}">Главная</a></li>
+            <li><a href="{% url 'base' %}">Каталог</a></li>
+            <li><a href="#footer">Контакты</a></li>
+            <li><a href="{% url 'cart' %}">Корзина</a></li>
+
+            <!-- icons -->
+            <li class="icons">
+              <span>
+                <img src="{% static 'catalog/images/shoppingBag.svg' %}" alt=""/>
+                <small class="count d-flex">{{ cart.products.count }}</small>
+              </span>
+            </li>
+        </ul>
+        <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+    </div>
+</nav>
+<!-- PRODUCTS -->
+
+ <div class="container cart">
+
+
+      <h4 class="text-center pt-5 pb-5" style="margin-bottom: 10px">Оформление заказа</h4>
+
+      <table>
+        <tr>
+          <th> .</th>
+        </tr>
+
+      </table>
+
+      <h3 class="text-center pt-5 pb-5" style="margin-bottom: 10px">Форма заказа</h3>
+          <form action="{% url 'make_order' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-block mb-3 " value="Подвердить заказ"
+            style="margin-top: 10px; font-size: 1.75rem; text-align: center; background-color: #004fac; color: white;
+            border: 0; border-radius: 5px;">
+          </form>
+
+ </div>
+
+
+<!-- Footer -->
+<footer id="footer" class="section footer">
+    <div class="container">
+        <div class="footer-container">
+
+            <div class="footer-center">
+                <h3 class="footer__title">ТОО "SensorSystems"</h3>
+                <p class="footer__description">Продажа, установка и
+                    сервисное обслуживание
+                    противокражного оборудования,
+                    систем безопасности и учёта.
+                </p>
+            </div>
+
+            <div class="footer-center">
+                <h3>Адрес</h3>
+                <div class="map">
+                    <img src="{% static 'src/img/map.jpg' %}" alt="">
+                </div>
+            </div>
+
+            <div class="footer-center">
+                <h3>Контакты</h3>
+                <div>
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+            </span>
+                    г. Алматы, пр. Рыскулова, БЦ "Массагет", 3 этаж, офис 325
+                </div>
+                <div>
+            <span>
+              <i class="far fa-envelope"></i>
+            </span>
+                    info@sensorsystems.kz
+                </div>
+                <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+                    +7 (727) 317 21 14
+                </div>
+                <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+                    +7 (707) 629 26 90
+                </div>
+                <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+                    +7 (747) 469 56 52
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+<!-- Custom Scripts -->
+<script src="{% static 'catalog/js/products.js' %}"></script>
+<script src="{% static 'catalog/js/slider.js' %}"></script>
+<script src="{% static 'catalog/js/index.js' %}"></script>
+</body>
+
+</html>

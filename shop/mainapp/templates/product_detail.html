@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% load specifications %}
+{% load static %}
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'icon.png' %}" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- Custom StyleSheet -->
+  <link rel="stylesheet" href="{% static 'catalog/dstyles.css' %}" />
+
+  <title>{{ product.title }}</title>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+
+    <nav class="nav">
+    <div class="color_border"></div>
+    <div class="wrapper container">
+
+      <div class="logo"><a href="{% url 'main' %}"><img src="{% static 'src/icon/logo.png' %}" alt=""></a></div>
+      <ul class="nav-list">
+        <div class="top">
+          <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+        </div>
+
+          <li><a class="main_link" href="{% url 'main' %}">Главная</a></li>
+          <li><a class="main_link" href="{% url 'base' %}">Каталог</a></li>
+          <li><a class="main_link" href="#footer">Контакты</a></li>
+          <li><a class="main_link" href="{% url 'cart' %}">Корзина</a></li>
+        <!-- icons -->
+        <li class="icons">
+          <span>
+            <img src="{% static 'catalog/images/shoppingBag.svg' %}" alt="" />
+             <small class="count d-flex">{{ cart.products.count }}</small>
+          </span>
+
+        </li>
+      </ul>
+      <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+
+  <!-- Product Details -->
+  <section class="section product-detail">
+    <h2 class="text-center mb-5" >{{ product.title }} </h2>
+    <div class="details container">
+      <div class="left">
+        <div class="main">
+          <img src="{{ product.image.url }}" alt="" />
+        </div>
+      </div>
+      <div class="right">
+        <li><a href="{% url 'base' %}">Каталог /</a> <a href="">{{ product.category.name }} /</a>
+        <li class="active-link">{{ product.title }}</li>
+
+        <br>
+        <h2>{{ product.title }}</h2>
+        <br>
+        <div class="price"> {{ product.price }} тг. </div>
+
+
+        <form class="form">
+
+          <a href="{% url 'add_to_cart' ct_model=ct_model slug=product.slug %}" class="addCart">Добавить в корзину</a>
+
+        </form>
+
+        <h3>Описание</h3>
+        <p>
+          {{ product.description }}
+        </p>
+        <br>
+        <h3>Характеристики</h3>
+
+        {% if product.category.slug == 'anti_theft_sensors_and_labels' %}
+          {% include 'products/anti_theft_sensors_and_labels_specification.html' %}
+        {% endif %}
+
+        {% if product.category.slug == 'anti_theft_systems' %}
+          {% include 'products/anti_theft_systems_specification.html' %}
+        {% endif %}
+
+        {% if product.category.slug == 'ready_made_kits' %}
+          {% include 'products/ready_made_kits_specification.html' %}
+        {% endif %}
+
+        {% if product.category.slug == 'shelving_protection' %}
+          {% include 'products/shelving_protection_specification.html' %}
+        {% endif %}
+
+        {% if product.category.slug == 'visitor_counter' %}
+          {% include 'products/visitor_counter_specification.html' %}
+        {% endif %}
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="section footer">
+    <div class="container">
+      <div class="footer-container">
+
+        <div class="footer-center">
+          <h3 class="footer__title">ТОО "SensorSystems"</h3>
+          <p class="footer__description">Продажа, установка и
+              сервисное обслуживание
+              противокражного оборудования,
+              систем безопасности и учёта.
+          </p>
+        </div>
+
+        <div class="footer-center">
+          <h3>Адрес</h3>
+          <div class="map">
+            <img src="{% static 'src/img/map.jpg' %}" alt="">
+          </div>
+        </div>
+
+        <div class="footer-center">
+          <h3>Контакты</h3>
+          <div>
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+            </span>
+            г. Алматы, пр. Рыскулова, БЦ "Массагет", 3 этаж, офис 325
+          </div>
+          <div>
+            <span>
+              <i class="far fa-envelope"></i>
+            </span>
+            info@sensorsystems.kz
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            +7 (727) 317 21 14
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            +7 (707) 629 26 90
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            +7 (747) 469 56 52
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Custom Scripts -->
+  <script src="{% static 'catalog/js/products.js' %}"></script>
+  <script src="{% static 'catalog/js/slider.js' %}"></script>
+  <script src="{% static 'catalog/js/index.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'icon.png' %}" type="image/png" />
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="{% static 'src/css/swiper-bundle.min.css' %}">
+    
+    <!-- Custom StyleSheet -->
+    <link rel="stylesheet" href="{% static 'src/css/style.css' %}" />
+    <title>SensorSystems</title>
+</head>
+<body>
+     
+     
+     <!-- Header -->
+     <header class="header" id="header">
+        <div class="color_border"></div>
+        <nav class="nav container">
+            <a href="" class="nav__logo"><img src="{% static 'src/icon/logo.png' %}"></a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Главная</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">О нас</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#discover" class="nav__link">Товары</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Контакты</a>
+                    </li>
+                </ul>
+
+                <i class="ri-close-line nav__close" id="nav-close"></i>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+     </header>
+     <main class="main">
+         
+        <section class="home" id="home">
+            <img src="{% static 'src/icon/home2.jpg' %}" alt="" class="home__img">
+
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <span class="home__data-subtitle">ТОО "SensorSystems"</span>
+                    <h1 class="home__data-title">Продуманные решения <br> для вашего бизнеса</b></h1>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <div class="about__container container grid">
+                <div class="about__data">
+                    <h2 class="section__title about__title">О компании</h2>
+                    <p class="about__description">ТОО "SensorSystems" - молодая казахстанская компания, основанная в 2017 году и специализирующаяся на продаже, установке и сервисном обслуживании противокражного оборудования, систем безопасности и учёта.
+                        Мы предлагаем готовые решения для различных сфер бизнеса.
+                    </p>
+                </div>
+
+                <div class="about__img">
+                    <div class="about__img-overlay">
+                        <img src="{% static 'src/img/about1.jpg' %}" alt="" class="about__img-one">
+                    </div>
+
+                    <div class="about__img-overlay">
+                        <img src="{% static 'src/img/about2.jpg' %}" alt="" class="about__img-two">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    <!--==================== DISCOVER ====================-->
+    <section class="discover section" id="discover">
+        <h2 class="section__title">Товары</h2>
+        
+        <div class="discover__container container swiper-container">
+            <div class="swiper-wrapper">
+                <!--==================== DISCOVER 1 ====================-->
+                <div class="discover__card swiper-slide">
+                    <img src="{% static 'src/img/discover1.jpg' %}" alt="" class="discover__img">
+                    <div class="discover__data">
+                        <h2 class="discover__title">Антикражные системы</h2>
+                        <span class="discover__description">Компонент торгового оборудования 
+                            в магазинах самообслуживания, предназначенный для защиты от 
+                            несанкционированного выноса товаров</span>
+                    </div>
+                </div>
+
+                <!--==================== DISCOVER 2 ====================-->
+                <div class="discover__card swiper-slide">
+                    <img src="{% static 'src/img/discover2.jpg' %}" alt="" class="discover__img">
+                    <div class="discover__data">
+                        <h2 class="discover__title">Счётчики</h2>
+                        <span class="discover__description">Приборы учета посетителей, автомобилей, товаров</span>
+                    </div>
+                </div>
+
+                <!--==================== DISCOVER 3 ====================-->
+                <div class="discover__card swiper-slide">
+                    <img src="{% static 'src/img/discover3.jpg' %}" alt="" class="discover__img">
+                    <div class="discover__data">
+                        <h2 class="discover__title">Защита на стеллажах</h2>
+                        <span class="discover__description">Решение для обеспечения сохранности 
+                            товаров на стеллажах и витринах</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dis_button">
+            <a href="{% url 'base' %}" class="button">Перейти в каталог</a>
+        </div>
+
+        </div>
+
+        
+    </section>
+
+    
+    
+<!--==================== EXPERIENCE ====================-->
+    <section class="experience section">
+        <h2 class="section__title">Сервисное обслуживание</h2>
+
+        <div class="experience__container container grid">
+            <div class="experience__content grid">
+                <div class="experience__data">
+                    
+                    <h2 class="experience__number"><i class="ri-settings-5-line"></i> Настройка</h2>
+                    <span class="experience__description">Установка и настройка систем любой сложности</span>
+                
+                </div>
+
+                <div class="experience__data">
+                    
+                    <h2 class="experience__number"><i class="ri-service-fill"></i> Сервис</h2>
+                    <span class="experience__description">Своевременное сервисное обслуживание оборудования</span>
+                </div>
+
+                <div class="experience__data">
+                    <h2 class="experience__number"><i class="ri-file-lock-fill"></i> Гарантия</h2>
+                    <span class="experience__description">Предоставление гарантии на услуги и оборудование</span>
+                </div>
+            </div>
+
+            <div class="experience__img grid">
+                <div class="experience__overlay">
+                    <img src="{% static 'src/img/experience11.jpg' %}" alt="" class="experience__img-one">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+<!--==================== FOOTER ====================-->
+<footer class="footer section" >
+    <section class="section" id="contact">
+        <div class="footer__container container grid">
+            <div class="f1">
+            
+                <div class="footer__content grid">
+
+                    <div class="footer__data">
+                        <h3 class="footer__title">ТОО "SensorSystems"</h3>
+                        <p class="footer__description">Продажа, установка и <br> 
+                            сервисное обслуживание <br>
+                            противокражного оборудования,<br> 
+                            систем безопасности и учёта.
+                        </p>
+                    </div>
+
+                    <div class="footer__data">
+                        <h3 class="footer__subtitle">Контакты:</h3>
+                        <ul>
+                            <li class="footer__item">
+                                <p href="" class="footer__link"> <i class="ri-phone-fill"></i> +7 (727) 317 21 14</p>
+                            </li>
+                            <li class="footer__item">
+                                <p href="" class="footer__link"> <i class="ri-phone-fill"></i> +7 (707) 629 26 90</p>
+                            </li>
+                            <li class="footer__item">
+                                <p href="" class="footer__link"> <i class="ri-phone-fill"></i> +7 (747) 469 56 52</p>
+                            </li>
+                            <li class="footer__item">
+                                <p href="" class="footer__link"> <i class="ri-mail-line"></i> info@sensorsystems.kz</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="f2">
+                    <div class="footer__content grid">
+                        <div class="footer__data">
+                            <h3 class="footer__subtitle">Мы находимся по адресу:</h3>
+                            <ul> 
+                                <li class="footer__item">
+                                    <p href="" class="footer__link"> <i class="ri-map-pin-2-fill"></i> г. Алматы, пр. Рыскулова, БЦ "Массагет",
+                                        3 этаж, офис 325</p>
+                                </li>
+                                <div class="map">
+                                    <img src="{% static 'src/img/map.jpg' %}" alt="">
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+               
+                
+            <div class="footer__rights">
+                <p class="footer__copy">&#169; 2021 ТОО "SensorSystems".</p>
+
+            </div>
+        </div>
+    </section>
+</footer>
+
+        <!--========== SCROLL UP ==========-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL===============-->
+        <script src="{% static 'src/js/scrollreveal.min.js' %}"></script>
+        
+        <!--=============== SWIPER JS ===============-->
+        <script src="{% static 'src/js/swiper-bundle.min.js' %}"></script>
+    
+        <script src="{% static 'src/js/main.js' %}"></script>
+
+</body>
+</html>
