@@ -25,7 +25,7 @@ SECRET_KEY = 'e)--$$hy2v_=ni8uf35pp_tv4cuqtf1(o7ci-_qn&-pc+o@2&%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sensorsystems.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'sensystems.herokuapp.com']
 
 
 # Application definition
